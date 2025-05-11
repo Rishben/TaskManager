@@ -7,7 +7,7 @@ const app = express()
 const PORT = 3000
 
 app.use(cors({
-  origin: 'https://taskmanager-be-npte.onrender.com'
+  origin: 'https://taskmanager-r3k9.onrender.com'
 }));
 
 app.use(express.json())
