@@ -16,7 +16,7 @@ function TaskDetails() {
     const fetchTask = async () => {
       try {
         setIsLoading(true)
-        const response = await axios.get(`http://localhost:3000/api/tasks/${id}`)
+        const response = await axios.get(`https://taskmanager-be-npte.onrender.com/api/tasks/${id}`)
         setTask(response.data)
       } catch (err) {
         setError('Failed to load task details')
@@ -30,7 +30,7 @@ function TaskDetails() {
 
   const handleStatusChange = async (status) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/tasks/${id}`, {
+      const response = await axios.put(`https://taskmanager-be-npte.onrender.com/api/tasks/${id}`, {
         ...task,
         status
       })
