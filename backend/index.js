@@ -12,7 +12,7 @@ app.use(cors({
 
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/taskmanager')
+mongoose.connect('mongodb+srv://nikhil20th65:y4yEH0fbF6OkbRAt@taskmanagement.aptou00.mongodb.net/')
 
 app.get('/api/tasks', async (req, res) => {
   try {
