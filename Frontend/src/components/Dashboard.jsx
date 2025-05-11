@@ -14,7 +14,7 @@ function Dashboard() {
     const fetchTasks = async () => {
       try {
         setIsLoading(true)
-        const response = await axios.get('http://localhost:3000/api/tasks')
+        const response = await axios.get('https://taskmanager-be-npte.onrender.com/api/tasks')
         dispatch(setTasks(response.data))
       } catch (error) {
         console.error('Error fetching tasks:', error)
@@ -27,7 +27,7 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/tasks/${id}`)
+      await axios.delete(`https://taskmanager-be-npte.onrender.com/api/tasks/${id}`)
       dispatch(deleteTask(id))
     } catch (error) {
       console.error('Error deleting task:', error)
