@@ -12,7 +12,7 @@ function AddTask() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await axios.post('http://localhost:3000/api/tasks', {
+    const response = await axios.post('https://taskmanager-be-npte.onrender.com/api/tasks', {
       title,
       description
     })
