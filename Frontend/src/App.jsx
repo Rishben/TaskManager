@@ -186,7 +186,7 @@ function App() {
         <div style={navbarStyle}>
           <Link to="/" style={navbarBrandStyle}>
             <Logo />
-            Task Manager
+            TaskBoard
           </Link>
           
           <button 
@@ -243,7 +243,7 @@ function App() {
       </main>
 
       <footer style={footerStyle}>
-        <p>© {new Date().getFullYear()} Task Manager App - Your tasks organized efficiently</p>
+        <p>© {new Date().getFullYear()} TaskBoard App - Your tasks organized efficiently</p>
       </footer>
     </div>
   );
