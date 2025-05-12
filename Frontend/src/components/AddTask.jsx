@@ -20,112 +20,179 @@ function AddTask() {
     navigate('/')
   }
 
-  // Inline CSS styles
+  // Inline CSS styles with updated color scheme and design
   const containerStyle = {
-    maxWidth: '600px',
-    margin: '40px auto',
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-    fontFamily: 'Arial, sans-serif'
+    maxWidth: '650px',
+    margin: '50px auto',
+    padding: '35px',
+    borderRadius: '12px',
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+    backgroundColor: '#f8f9fe',
+    fontFamily: '"Segoe UI", Roboto, "Helvetica Neue", sans-serif'
   }
 
   const headingStyle = {
-    fontSize: '28px',
-    fontWeight: 'bold',
-    marginBottom: '25px',
-    color: '#333',
+    fontSize: '32px',
+    fontWeight: '700',
+    marginBottom: '30px',
+    color: '#2d3748',
     textAlign: 'center',
-    borderBottom: '2px solid #f0f0f0',
-    paddingBottom: '15px'
+    padding: '0 0 15px 0'
   }
 
   const formGroupStyle = {
-    marginBottom: '22px'
+    marginBottom: '28px'
   }
 
   const labelStyle = {
     display: 'block',
-    marginBottom: '8px',
+    marginBottom: '10px',
     fontSize: '16px',
-    fontWeight: '500',
-    color: '#555'
+    fontWeight: '600',
+    color: '#4a5568',
+    letterSpacing: '0.5px'
   }
 
   const inputStyle = {
     width: '100%',
-    padding: '12px',
+    padding: '14px 16px',
     fontSize: '16px',
-    border: '1px solid #ddd',
-    borderRadius: '4px',
+    border: '2px solid #e2e8f0',
+    borderRadius: '8px',
     outline: 'none',
-    transition: 'border 0.3s',
-    boxSizing: 'border-box'
+    transition: 'all 0.3s ease',
+    boxSizing: 'border-box',
+    backgroundColor: 'white'
+  }
+
+  const inputFocusStyle = {
+    borderColor: '#6366f1',
+    boxShadow: '0 0 0 3px rgba(99, 102, 241, 0.2)'
   }
 
   const textareaStyle = {
     ...inputStyle,
-    minHeight: '120px',
+    minHeight: '150px',
     resize: 'vertical'
   }
 
-  const buttonStyle = {
-    backgroundColor: '#4a6ee0',
-    color: 'white',
-    border: 'none',
-    padding: '14px 24px',
-    fontSize: '16px',
-    fontWeight: '600',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-    display: 'block',
-    width: '100%',
-    marginTop: '10px'
+  const buttonContainerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '10px',
+    gap: '15px'
   }
 
-  const buttonHoverStyle = {
-    backgroundColor: '#3658c5'
+  const buttonStyle = {
+    flex: '1',
+    backgroundColor: '#6366f1', // Indigo color
+    color: 'white',
+    border: 'none',
+    padding: '14px 20px',
+    fontSize: '16px',
+    fontWeight: '600',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+
+  const cancelButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: 'white',
+    color: '#4a5568',
+    border: '2px solid #e2e8f0'
+  }
+
+  const cardHeaderStyle = {
+    backgroundColor: '#6366f1', // Indigo background header
+    margin: '-35px -35px 25px -35px',
+    padding: '25px 35px',
+    borderTopLeftRadius: '12px',
+    borderTopRightRadius: '12px',
+    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)'
+  }
+
+  const headerTextStyle = {
+    color: 'white',
+    fontSize: '24px',
+    fontWeight: '600',
+    margin: '0'
   }
 
   return (
     <div style={containerStyle}>
-      <h2 style={headingStyle}>Add New Task</h2>
+      <div style={cardHeaderStyle}>
+        <h2 style={headerTextStyle}>Create New Task</h2>
+      </div>
+      
       <form onSubmit={handleSubmit}>
         <div style={formGroupStyle}>
-          <label style={labelStyle}>Title</label>
+          <label style={labelStyle}>Task Title</label>
           <input
             type="text"
             style={inputStyle}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter task title"
+            placeholder="What needs to be done?"
             required
+            onFocus={(e) => {
+              Object.assign(e.target.style, inputFocusStyle);
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = inputStyle.border.split(' ')[2];
+              e.target.style.boxShadow = 'none';
+            }}
           />
         </div>
         <div style={formGroupStyle}>
-          <label style={labelStyle}>Description</label>
+          <label style={labelStyle}>Task Description</label>
           <textarea
             style={textareaStyle}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter task description"
+            placeholder="Add details about this task..."
             required
+            onFocus={(e) => {
+              Object.assign(e.target.style, inputFocusStyle);
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = inputStyle.border.split(' ')[2];
+              e.target.style.boxShadow = 'none';
+            }}
           />
         </div>
-        <button 
-          type="submit" 
-          style={buttonStyle}
-          onMouseOver={(e) => {
-            e.target.style.backgroundColor = buttonHoverStyle.backgroundColor;
-          }}
-          onMouseOut={(e) => {
-            e.target.style.backgroundColor = buttonStyle.backgroundColor;
-          }}
-        >
-          Add Task
-        </button>
+        <div style={buttonContainerStyle}>
+          <button 
+            type="button" 
+            style={cancelButtonStyle}
+            onClick={() => navigate('/')}
+            onMouseOver={(e) => {
+              e.target.style.backgroundColor = '#f8fafc';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.backgroundColor = 'white';
+            }}
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            style={buttonStyle}
+            onMouseOver={(e) => {
+              e.target.style.backgroundColor = '#4f46e5';
+              e.target.style.transform = 'translateY(-2px)';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.backgroundColor = '#6366f1';
+              e.target.style.transform = 'translateY(0)';
+            }}
+          >
+            Create Task
+          </button>
+        </div>
       </form>
     </div>
   )

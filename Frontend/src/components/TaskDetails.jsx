@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React,{ useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { updateTask } from '../store'
@@ -41,101 +41,144 @@ function TaskDetails() {
     }
   }
 
-  // Inline CSS styles
+  // Inline CSS styles with updated color scheme to match other components
   const containerStyle = {
-    maxWidth: '800px',
-    margin: '40px auto',
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-    fontFamily: 'Arial, sans-serif'
+    maxWidth: '850px',
+    margin: '50px auto',
+    padding: '0 20px', // Responsive padding
+    fontFamily: '"Segoe UI", Roboto, "Helvetica Neue", sans-serif'
+  }
+
+  const cardStyle = {
+    borderRadius: '12px',
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+    backgroundColor: '#f8f9fe',
+    overflow: 'hidden'
   }
 
   const headerStyle = {
-    borderBottom: '2px solid #f0f0f0',
-    paddingBottom: '15px',
-    marginBottom: '25px',
-    position: 'relative'
+    backgroundColor: '#6366f1', // Indigo color to match other components
+    padding: '25px 35px',
+    color: 'white',
+    position: 'relative',
+    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)'
+  }
+
+  const contentStyle = {
+    padding: '30px 35px'
   }
 
   const titleStyle = {
-    fontSize: '28px',
-    fontWeight: 'bold',
-    color: '#333',
-    margin: '0 0 5px 0'
+    fontSize: '24px',
+    fontWeight: '600',
+    color: 'white',
+    margin: '0 0 10px 0'
   }
 
   const metaInfoStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: '15px'
+    flexWrap: 'wrap', // For responsive design
+    gap: '10px',
+    marginTop: '10px'
   }
 
   const timestampStyle = {
     fontSize: '14px',
-    color: '#888',
+    color: 'rgba(255, 255, 255, 0.85)',
     fontStyle: 'italic'
   }
 
   const descriptionContainerStyle = {
     marginBottom: '30px',
-    padding: '20px',
-    backgroundColor: '#f9f9f9',
-    borderRadius: '6px',
-    borderLeft: '4px solid #4a6ee0'
+    padding: '25px',
+    backgroundColor: 'white',
+    borderRadius: '10px',
+    borderLeft: '4px solid #6366f1', // Updated to indigo
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
   }
 
   const descriptionStyle = {
     fontSize: '16px',
-    lineHeight: '1.6',
-    color: '#444',
+    lineHeight: '1.7',
+    color: '#4a5568',
     whiteSpace: 'pre-wrap'
   }
 
   const formGroupStyle = {
-    marginBottom: '25px'
+    marginBottom: '28px'
   }
 
   const labelStyle = {
     display: 'block',
-    marginBottom: '8px',
+    marginBottom: '10px',
     fontSize: '16px',
-    fontWeight: '500',
-    color: '#555'
+    fontWeight: '600',
+    color: '#4a5568',
+    letterSpacing: '0.5px'
   }
 
   const selectStyle = {
     width: '100%',
-    padding: '12px',
+    padding: '14px 16px',
     fontSize: '16px',
-    border: '1px solid #ddd',
-    borderRadius: '4px',
-    backgroundColor: '#fff',
+    border: '2px solid #e2e8f0',
+    borderRadius: '8px',
+    backgroundColor: 'white',
     outline: 'none',
     cursor: 'pointer',
-    transition: 'border 0.3s, box-shadow 0.3s'
+    transition: 'all 0.3s ease',
+    appearance: 'none', // Remove default styling
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right 16px center',
+    backgroundSize: '16px'
+  }
+
+  const selectFocusStyle = {
+    borderColor: '#6366f1',
+    boxShadow: '0 0 0 3px rgba(99, 102, 241, 0.2)'
   }
 
   const buttonContainerStyle = {
     display: 'flex',
     gap: '15px',
-    marginTop: '30px'
+    marginTop: '30px',
+    flexWrap: 'wrap' // For responsiveness
   }
 
   const backButtonStyle = {
-    backgroundColor: '#6c757d',
-    color: 'white',
-    border: 'none',
-    padding: '12px 20px',
+    backgroundColor: 'white',
+    color: '#4a5568',
+    border: '2px solid #e2e8f0',
+    padding: '12px 24px',
     fontSize: '16px',
     fontWeight: '600',
-    borderRadius: '4px',
+    borderRadius: '8px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s',
+    transition: 'all 0.3s ease',
     textDecoration: 'none',
-    display: 'inline-block'
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+
+  const updateButtonStyle = {
+    backgroundColor: '#6366f1',
+    color: 'white',
+    border: 'none',
+    padding: '12px 24px',
+    fontSize: '16px',
+    fontWeight: '600',
+    borderRadius: '8px', 
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    flex: '1',
+    maxWidth: '200px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
   const loadingStyle = {
@@ -147,19 +190,32 @@ function TaskDetails() {
     gap: '20px'
   }
 
+  const loadingIconStyle = {
+    fontSize: '48px',
+    marginBottom: '15px',
+    color: '#cbd5e0'
+  }
+
   const errorStyle = {
-    padding: '20px',
-    backgroundColor: '#ffebee',
-    color: '#c62828',
-    borderRadius: '4px',
-    marginBottom: '20px'
+    padding: '25px',
+    backgroundColor: '#fee2e2',
+    color: '#ef4444',
+    borderRadius: '10px',
+    marginBottom: '25px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px'
+  }
+
+  const errorIconStyle = {
+    fontSize: '24px'
   }
 
   const getBadgeStyle = (status) => {
     const colors = {
-      'pending': { bg: '#ffebc2', text: '#856404' },
-      'in-progress': { bg: '#c5e1f9', text: '#0d47a1' },
-      'completed': { bg: '#d4edda', text: '#155724' }
+      'pending': { bg: '#fef3c7', text: '#d97706' }, // Amber
+      'in-progress': { bg: '#dbeafe', text: '#2563eb' }, // Blue
+      'completed': { bg: '#d1fae5', text: '#10b981' } // Emerald
     }
     
     const defaultColors = { bg: '#e9ecef', text: '#343a40' }
@@ -167,11 +223,11 @@ function TaskDetails() {
     
     return {
       display: 'inline-block',
-      padding: '8px 16px',
+      padding: '6px 14px',
       borderRadius: '20px',
       backgroundColor: colorSet.bg,
       color: colorSet.text,
-      fontWeight: 'bold',
+      fontWeight: '600',
       fontSize: '14px',
       textTransform: 'capitalize'
     }
@@ -180,8 +236,11 @@ function TaskDetails() {
   if (isLoading) {
     return (
       <div style={containerStyle}>
-        <div style={loadingStyle}>
-          <div style={{ fontSize: '18px', color: '#666' }}>Loading task details...</div>
+        <div style={cardStyle}>
+          <div style={loadingStyle}>
+            <div style={loadingIconStyle}>⌛</div>
+            <div style={{ fontSize: '18px', color: '#4a5568' }}>Loading task details...</div>
+          </div>
         </div>
       </div>
     )
@@ -190,15 +249,28 @@ function TaskDetails() {
   if (error) {
     return (
       <div style={containerStyle}>
-        <div style={errorStyle}>{error}</div>
-        <button 
-          onClick={() => navigate('/')} 
-          style={backButtonStyle}
-          onMouseOver={(e) => e.target.style.backgroundColor = '#5a6268'}
-          onMouseOut={(e) => e.target.style.backgroundColor = '#6c757d'}
-        >
-          Back to Dashboard
-        </button>
+        <div style={cardStyle}>
+          <div style={contentStyle}>
+            <div style={errorStyle}>
+              <span style={errorIconStyle}>⚠️</span>
+              {error}
+            </div>
+            <button 
+              onClick={() => navigate('/')} 
+              style={backButtonStyle}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = '#f8fafc';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = 'white';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
       </div>
     )
   }
@@ -207,44 +279,75 @@ function TaskDetails() {
 
   return (
     <div style={containerStyle}>
-      <div style={headerStyle}>
-        <h2 style={titleStyle}>{task.title}</h2>
-        <div style={metaInfoStyle}>
-          <span style={getBadgeStyle(task.status)}>{task.status}</span>
-          {task.createdAt && (
-            <span style={timestampStyle}>
-              Created: {new Date(task.createdAt).toLocaleDateString()}
-            </span>
-          )}
+      <div style={cardStyle}>
+        <div style={headerStyle}>
+          <h2 style={titleStyle}>{task.title}</h2>
+          <div style={metaInfoStyle}>
+            <span style={getBadgeStyle(task.status)}>{task.status}</span>
+            {task.createdAt && (
+              <span style={timestampStyle}>
+                Created: {new Date(task.createdAt).toLocaleDateString()}
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-      
-      <div style={descriptionContainerStyle}>
-        <p style={descriptionStyle}>{task.description}</p>
-      </div>
-      
-      <div style={formGroupStyle}>
-        <label style={labelStyle}>Update Status:</label>
-        <select
-          style={selectStyle}
-          value={task.status}
-          onChange={(e) => handleStatusChange(e.target.value)}
-        >
-          <option value="pending">Pending</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
-        </select>
-      </div>
-      
-      <div style={buttonContainerStyle}>
-        <button 
-          onClick={() => navigate('/')} 
-          style={backButtonStyle}
-          onMouseOver={(e) => e.target.style.backgroundColor = '#5a6268'}
-          onMouseOut={(e) => e.target.style.backgroundColor = '#6c757d'}
-        >
-          Back to Dashboard
-        </button>
+        
+        <div style={contentStyle}>
+          <div style={descriptionContainerStyle}>
+            <p style={descriptionStyle}>{task.description}</p>
+          </div>
+          
+          <div style={formGroupStyle}>
+            <label style={labelStyle}>Update Status:</label>
+            <select
+              style={selectStyle}
+              value={task.status}
+              onChange={(e) => handleStatusChange(e.target.value)}
+              onFocus={(e) => {
+                Object.assign(e.target.style, selectFocusStyle);
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = '#e2e8f0';
+                e.target.style.boxShadow = 'none';
+              }}
+            >
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          
+          <div style={buttonContainerStyle}>
+            <button 
+              onClick={() => navigate('/')} 
+              style={backButtonStyle}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = '#f8fafc';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = 'white';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Back to Dashboard
+            </button>
+            <button 
+              onClick={() => navigate('/add')} 
+              style={updateButtonStyle}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = '#4f46e5';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = '#6366f1';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Add New Task
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )
